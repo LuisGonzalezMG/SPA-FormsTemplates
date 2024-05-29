@@ -1,0 +1,92 @@
+<h4>Formularios <small> tipo </small></h4>
+<hr>
+<form (ngSubmit)="submit()" #forma="ngForm" autocomplete="off">
+
+
+    <div class="form-group row mb-3">
+        <label class="col-sm-2 col-form-label">Nombre</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" #name="ngModel" [(ngModel)]="register.name" placeholder="Introduzca su nombre" name="name" minlength="5" required pattern="\S.*" [ngClass]="{'is-valid': !name.invalid && (name.dirty || name.touched), 'is-invalid': name.invalid && (name.dirty || name.touched)}">
+            <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.errors?.['minlength']">
+                    Introduzca un nombre de pila con 5 caracteres mínimo
+                </div>
+                <div *ngIf="name.errors?.['required']">
+                    Introduzca un nombre de pila válido por favor
+                </div>
+                <div *ngIf="name.errors?.['pattern']">
+                    No se permiten valores en blanco
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label class="col-sm-2 col-form-label">Apellido</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" #apellido="ngModel" [(ngModel)]="register.apellido" placeholder="Introduzca su apellido" name="lastName" minlength="5" required pattern="\S.*" [ngClass]="{'is-valid': !apellido.invalid && (apellido.dirty || apellido.touched), 'is-invalid': apellido.invalid && (apellido.dirty || apellido.touched)}">
+            <div class="invalid-feedback" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                <div *ngIf="apellido.errors?.['minlength']">
+                    Introduzca un apellido con 5 caracteres mínimo
+                </div>
+                <div *ngIf="apellido.errors?.['required']">
+                    Introduzca un apellido válido por favor
+                </div>
+                <div *ngIf="apellido.errors?.['pattern']">
+                    No se permiten valores en blanco
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row mb-3">
+        <label class="col-sm-2 col-form-label">Correo</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="email" #correo="ngModel" [(ngModel)]="register.correo" placeholder="Introduzca su correo" name="correo" class="form-control" required [ngClass]="{'is-valid': !correo.invalid && (correo.dirty || correo.touched), 'is-invalid': correo.invalid && (correo.dirty || correo.touched)}"
+                pattern="^[a-zA-Z0-9._-]+&#64;[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$">
+            <div class="invalid-feedback" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                <div *ngIf="correo.errors?.['required']">
+                    Introduzca un correo electrónico válido por favor {{ correo.value }}
+                </div>
+                <div *ngIf="correo.errors?.['pattern']">
+                    El correo electrónico no sigue el formato correcto. Sigue este ejemplo: anartz&#64;mugika.com {{ correo.value }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label class="col-sm-2 col-form-label">Contraseña</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="password" placeholder="Introduzca Contraseña" #contrasena="ngModel" [(ngModel)]="register.contrasena" name="contrasena" class="form-control" required [ngClass]="{'is-valid': !contrasena.invalid, 'is-invalid': contrasena.invalid}">
+            <div class="invalid-feedback" *ngIf="contrasena.invalid && (contrasena.dirty || contrasena.touched)">
+                <div *ngIf="contrasena.errors && contrasena.errors['required']">
+                    Introduzca una contraseña por favor
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label class="col-sm-2 col-form-label">Repetir Contraseña</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="password" placeholder="Repita su contraseña" #repContrasena="ngModel" [(ngModel)]="register.repcontrasena" name="repeContrasena" class="form-control" required [ngClass]="{'is-valid': !repContrasena.invalid, 'is-invalid': repContrasena.invalid}">
+            <div class="invalid-feedback" *ngIf="repContrasena.invalid && (repContrasena.dirty || repContrasena.touched)">
+                <div *ngIf="repContrasena.errors && repContrasena.errors['required']">
+                    Introduzca una contraseña por favor
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">&nbsp;</label>
+        <div class="col-sm-10">
+            <button type="submit" [disabled]="!forma.valid" class="btn btn-outline-primary btn-block">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+</form>
